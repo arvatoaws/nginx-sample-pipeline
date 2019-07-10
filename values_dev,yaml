@@ -5,9 +5,14 @@
 replicaCount: 1
 
 image:
-  repository: nginx
-  tag: stable
-  pullPolicy: IfNotPresent
+  repository: 177865682799.dkr.ecr.eu-central-1.amazonaws.com/nginx-sample
+  tag: commit-9efab80d
+  pullPolicy: Always
+  canary:
+    enabled: true
+    enabledd: false
+    repository: 177865682799.dkr.ecr.eu-central-1.amazonaws.com/nginx-sample
+    tag: latest
 
 nameOverride: ""
 fullnameOverride: ""
@@ -17,13 +22,20 @@ service:
   port: 80
 
 ingress:
-  enabled: false
-  annotations: {}
-    # kubernetes.io/ingress.class: nginx
+  enabled: true
+  annotations: 
+    traefik.ingress.kubernetes.io/service-weights: |
+      nginx-example-nginx-helm-chart: 50%
+      nginx-example-nginx-helm-chart-canary: 50%
+    kubernetes.io/ingress.class: traefik
+    traefik.ingress.kubernetes.io/frontend-entry-points: http
+    traefik.ingress.kubernetes.io/redirect-entry-point: http
     # kubernetes.io/tls-acme: "true"
-  paths: []
+  paths: 
+    - /
   hosts:
-    - chart-example.local
+    - nginxsample.dev.mgmt.aws-arvato.com
+
   tls: []
   #  - secretName: chart-example-tls
   #    hosts:
