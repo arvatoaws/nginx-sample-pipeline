@@ -1,0 +1,11 @@
+name: profile-nginx
+title: Example NGINX 
+maintainer: peter.hoppe@bertelsmann.de
+copyright: peter.hoppe@bertelsmann.de
+copyright_email: peter.hoppe@berteslmann.de
+license: Apache-2.0
+summary: Demonstrates the use of an InSpec Compliance Profile on NGINX example
+version: 1.0.0
+
+supports:
+  - platform: unix
