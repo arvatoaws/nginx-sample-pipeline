@@ -1,4 +1,3 @@
-
 title 'nginx tests'
 
 # wait for application startup
