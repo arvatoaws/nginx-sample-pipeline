@@ -10,7 +10,6 @@ image:
   pullPolicy: Always
   canary:
     enabled: true
-    enabledd: false
     repository: 177865682799.dkr.ecr.eu-central-1.amazonaws.com/nginx-sample
     tag: latest
 
